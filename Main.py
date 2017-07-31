@@ -3,6 +3,33 @@ import FILEManager
 import simplejson as json
 import GCUREInterface
 
+def encontrarInsumo(S):
+    LInsumo = BD.listaInsumo()
+    S = S.upper()
+    for i in xrange(len(LInsumo)):
+        if LInsumo[i][1].find(S) != -1:
+            print LInsumo[i]
+
+def encontrarComposicao(S):
+    LComposicao = BD.listaComposicao()
+    S = S.upper()
+    for i in xrange(len(LComposicao)):
+        if LComposicao[i][1].find(S) != -1:
+            print LComposicao[i]
+
+def exibirComposicao(id):
+    LComposicao = BD.lerComposicaoXComposicao(int(float(id)))
+    LInsumo = BD.lerComposicaoXInsumo(int(float(id)))
+    for i in xrange(len(LComposicao)):
+        print BD.lerComposicao(int(float(LComposicao[i][1])))
+    for i in xrange(len(LInsumo)):
+        print BD.lerInsumo(int(float(LInsumo[i][1])))
+
+def exibirInsumo(id):
+    LInsumo = BD.lerInsumoXComposicao(int(float(id)))
+    for i in xrange(len(LInsumo)):
+        print BD.lerComposicao(int(float(LInsumo[i][0])))
+
 if __name__=='__main__':
     BD = BDManager.BDManager()
     FM = FILEManager.filemanager()
@@ -31,6 +58,13 @@ if __name__=='__main__':
                         H = AQV[i][1]
                         H = str(H).replace("/", "000")
                         BD.inserirComposicaoXComposicao(int(T), int(float(H)))
+
+
+    #encontrarInsumo('VIBRADOR')
+    #encontrarComposicao('Torque')
+    #exibirComposicao(89264)
+    #exibirInsumo(37731)
+
     app = GCUREInterface.JanelaPrincipal()
     app.master.title("GCURE")
     app.master.geometry("720x600+100+100")

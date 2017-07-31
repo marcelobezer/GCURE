@@ -94,7 +94,7 @@ class BDManager:
         if type(id) == int:
             try:
                 BD.cur.execute("""
-                SELECT * FROM insumo
+                SELECT * FROM insumos
                 WHERE id = ?
                 """, (id,))
                 valor = BD.cur.fetchall()
@@ -110,6 +110,20 @@ class BDManager:
                 BD.cur.execute("""
                 SELECT * FROM composicoesXinsumos
                 WHERE idComposicao = ?
+                """, (id,))
+                valor = BD.cur.fetchall()
+                return valor
+            except ValueError as e:
+                print e
+                return False
+        return False
+
+    def lerInsumoXComposicao(self, id):
+        if type(id) == int:
+            try:
+                BD.cur.execute("""
+                SELECT * FROM composicoesXinsumos
+                WHERE idInsumo = ?
                 """, (id,))
                 valor = BD.cur.fetchall()
                 return valor
@@ -165,3 +179,31 @@ class BDManager:
                 print e
                 return False
         return False
+
+    def listaInsumo(self):
+        try:
+            BD.cur.execute("""
+            SELECT * FROM insumos
+            """)
+            valor = BD.cur.fetchall()
+            if valor == []:
+                return False
+            else:
+                return valor
+        except ValueError as e:
+            print e
+            return False
+
+    def listaComposicao(self):
+        try:
+            BD.cur.execute("""
+            SELECT * FROM insumos
+            """)
+            valor = BD.cur.fetchall()
+            if valor == []:
+                return False
+            else:
+                return valor
+        except ValueError as e:
+            print e
+            return False
