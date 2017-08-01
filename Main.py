@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import BDManager
 import FILEManager
 import simplejson as json
