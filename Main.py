@@ -2,6 +2,7 @@ import BDManager
 import FILEManager
 import simplejson as json
 import GCUREInterface
+from Tkinter import *
 
 def encontrarInsumo(S):
     LInsumo = BD.listaInsumo()
@@ -65,9 +66,8 @@ if __name__=='__main__':
     #exibirComposicao(89264)
     #exibirInsumo(37731)
 
-    app = GCUREInterface.JanelaPrincipal()
-    app.master.title("GCURE")
-    app.master.geometry("720x600+100+100")
+    root = Tk()
+    app = GCUREInterface.JanelaPrincipal(master = root)
     GCUREInterface.mainloop()
 
 
